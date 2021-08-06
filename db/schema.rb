@@ -10,10 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_06_195914) do
+ActiveRecord::Schema.define(version: 2021_08_06_232221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "candidate_criterium_scores", force: :cascade do |t|
+    t.integer "score", default: 0, null: false
+    t.bigint "criteria_id"
+    t.bigint "candidate_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["candidate_id"], name: "index_candidate_criterium_scores_on_candidate_id"
+    t.index ["criteria_id"], name: "index_candidate_criterium_scores_on_criteria_id"
+  end
+
+  create_table "candidates", force: :cascade do |t|
+    t.string "first_name", default: "", null: false
+    t.string "second_name", default: "", null: false
+    t.string "image_url"
+    t.string "email", default: "", null: false
+    t.string "number"
+    t.float "expirience_years", default: 0.0
+    t.text "biography", default: ""
+    t.bigint "status_id"
+    t.bigint "vacancy_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["status_id"], name: "index_candidates_on_status_id"
+    t.index ["vacancy_id"], name: "index_candidates_on_vacancy_id"
+  end
+
+  create_table "criteria", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "position_criterium_scores", force: :cascade do |t|
+    t.integer "score", default: 0, null: false
+    t.bigint "criteria_id"
+    t.bigint "position_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["criteria_id"], name: "index_position_criterium_scores_on_criteria_id"
+    t.index ["position_id"], name: "index_position_criterium_scores_on_position_id"
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,6 +83,17 @@ ActiveRecord::Schema.define(version: 2021_08_06_195914) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "vacancies", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.boolean "status", default: false, null: false
+    t.date "opening_date", null: false
+    t.date "closing_date"
+    t.bigint "position_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["position_id"], name: "index_vacancies_on_position_id"
   end
 
 end

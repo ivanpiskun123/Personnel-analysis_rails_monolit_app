@@ -1,0 +1,2 @@
+class CandidateCriteriumScore < ApplicationRecord
+end

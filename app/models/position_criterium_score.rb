@@ -1,0 +1,2 @@
+class PositionCriteriumScore < ApplicationRecord
+end
