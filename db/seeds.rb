@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# initial active_admin records | must be commented after running rails db:seed with this record
+User.create!(name: "Initial user" ,email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
