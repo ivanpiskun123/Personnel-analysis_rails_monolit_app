@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_06_232221) do
+ActiveRecord::Schema.define(version: 2021_08_07_002719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "candidate_criterium_scores", force: :cascade do |t|
     t.integer "score", default: 0, null: false
-    t.bigint "criteria_id"
+    t.bigint "criterium_id"
     t.bigint "candidate_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["candidate_id"], name: "index_candidate_criterium_scores_on_candidate_id"
-    t.index ["criteria_id"], name: "index_candidate_criterium_scores_on_criteria_id"
+    t.index ["criterium_id"], name: "index_candidate_criterium_scores_on_criterium_id"
   end
 
   create_table "candidates", force: :cascade do |t|
@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 2021_08_06_232221) do
 
   create_table "position_criterium_scores", force: :cascade do |t|
     t.integer "score", default: 0, null: false
-    t.bigint "criteria_id"
+    t.bigint "criterium_id"
     t.bigint "position_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["criteria_id"], name: "index_position_criterium_scores_on_criteria_id"
+    t.index ["criterium_id"], name: "index_position_criterium_scores_on_criterium_id"
     t.index ["position_id"], name: "index_position_criterium_scores_on_position_id"
   end
 
