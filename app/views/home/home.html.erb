@@ -1,0 +1,39 @@
+
+
+<div class="ui compact menu">
+  <a class="item">
+    A link
+  </a>
+  <div class="link item active">
+    div Link
+  </div>
+</div>
+
+
+<div class="ui huge  star rating"  data-rating="3" data-max-rating="5" disabled></div>
+
+  <!--- Example Javascript -->
+  <script>
+  $(document)
+    .ready(function() {
+
+      $('.star.rating')
+        .rating('disable')
+      ;
+
+    })
+  ;
+  </script>
+
+  <script>
+  $(document)
+    .ready(function() {
+      $('.toggle.example .rating')
+        .rating({
+          initialRating: 1,
+          maxRating: 3
+        })
+      ;
+    })
+  ;
+  </script>

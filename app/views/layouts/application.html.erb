@@ -11,6 +11,23 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <% if current_user %>
+        <div class="ui grid">
+            <div class="ui  placeholder  segment">
+              <div class="four wide column">
+                  <%= render partial: 'shared/navigation_bar' %>
+              </div>
+            </div>
+
+            <div class="six wide column">
+
+                  <%= yield %>
+            </div>
+
+    <% else %>
+         <%= yield %>
+    <% end %>
+
   </body>
 </html>

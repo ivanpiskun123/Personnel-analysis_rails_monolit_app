@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users, ActiveAdmin::Devise.config
+
+  devise_for :users
+
   ActiveAdmin.routes(self)
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  root 'home#home'
+
+  resources :positions
+  resources :criteria
+  resources :candidates
+  resources :vacancies
+  resources :position_criterium_scores
+  resources :candidate_criterium_scores
+
+  get "home/home"
+
 end

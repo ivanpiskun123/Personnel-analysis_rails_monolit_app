@@ -57,3 +57,5 @@ gem 'activeadmin'
 gem 'cancancan'
 gem 'draper'
 gem 'pundit'
+
+gem 'semantic-ui-sass'

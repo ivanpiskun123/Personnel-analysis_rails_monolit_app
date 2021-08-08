@@ -79,28 +79,28 @@ Vacancy.create([
 
   Candidate.create([
     {first_name: "Иван", second_name: "Петров", email: "ivanpetrov@gmail.com", number: "+375295445659", user: User.limit(6)[rand(0..5)],
-    expirience_years: 1.2, biography: bigraphys[rand(1..3)], vacancy: Vacancy.first, status: 0},
+    expirience_years: 1.2, biography: bigraphys[rand(1..3)], vacancy: Vacancy.first, status: 0, gender: true},
     {first_name: "Пётр", second_name: "Молицкий", email: "petr_mol@gmail.com", number: "+375295441212",user: User.limit(6)[rand(0..5)],
-    expirience_years: 1.6, biography: bigraphys[rand(1..3)], vacancy: Vacancy.first, status: 1},
+    expirience_years: 1.6, biography: bigraphys[rand(1..3)], vacancy: Vacancy.first, status: 1, gender: true},
     {first_name: "Алина", second_name: "Милая", email: "alinka@gmail.com", number: "+375295477865",user: User.limit(6)[rand(0..5)],
-    expirience_years: 1.9, biography: bigraphys[rand(1..3)], vacancy: Vacancy.first, status: 1},
+    expirience_years: 1.9, biography: bigraphys[rand(1..3)], vacancy: Vacancy.first, status: 1, gender: false},
 
     {first_name: "Евгений", second_name: "Момицкий", email: "jenya_momo@gmail.com", number: "+375335441213",user: User.limit(6)[rand(0..5)],
-    expirience_years: 2, biography: bigraphys[rand(1..3)], vacancy: Vacancy.second, status: 1},
+    expirience_years: 2, biography: bigraphys[rand(1..3)], vacancy: Vacancy.second, status: 1, gender: true},
     {first_name: "Виктор", second_name: "Новенький", email: "victor_nova@gmail.com", number: "+375332699536",user: User.limit(6)[rand(0..5)],
-    expirience_years: 1.2, biography: bigraphys[rand(1..3)], vacancy: Vacancy.second, status: 0},
+    expirience_years: 1.2, biography: bigraphys[rand(1..3)], vacancy: Vacancy.second, status: 0, gender: true},
 
     {first_name: "Юлия", second_name: "Селивонец", email: "julia_bomba@gmail.com", number: "+375335441288",user: User.limit(6)[rand(0..5)],
-    expirience_years: 4, biography: bigraphys[rand(1..3)], vacancy: Vacancy.third, status: 1},
+    expirience_years: 4, biography: bigraphys[rand(1..3)], vacancy: Vacancy.third, status: 1, gender: false},
 
     {first_name: "Герман", second_name: "Школяр", email: "german_kola@gmail.com", number: "+375335568688",user: User.limit(6)[rand(0..5)],
-    expirience_years: 4, biography: bigraphys[rand(1..3)], vacancy: Vacancy.fifth, status: 0},
+    expirience_years: 4, biography: bigraphys[rand(1..3)], vacancy: Vacancy.fifth, status: 0, gender: true},
     {first_name: "Сергей", second_name: "Момыкин", email: "sergei_momkin@gmail.com", number: "+375295441289",user: User.limit(6)[rand(0..5)],
-    expirience_years: 2, biography: bigraphys[rand(1..3)], vacancy: Vacancy.fifth, status: 1},
+    expirience_years: 2, biography: bigraphys[rand(1..3)], vacancy: Vacancy.fifth, status: 1, gender: true},
     {first_name: "Валентина", second_name: "Селивонец", email: "valiantsina_mola@gmail.com", number: "+375275441233",user: User.limit(6)[rand(0..5)],
-    expirience_years: 2.3, biography: bigraphys[rand(1..3)], vacancy: Vacancy.fifth, status: 0},
+    expirience_years: 2.3, biography: bigraphys[rand(1..3)], vacancy: Vacancy.fifth, status: 0, gender: false},
     {first_name: "Елена", second_name: "Пырко", email: "elena_pirko@gmail.com", number: "+375335121387",user: User.limit(6)[rand(0..5)],
-    expirience_years: 5.1, biography: bigraphys[rand(1..3)], vacancy: Vacancy.fifth, status: 1}
+    expirience_years: 5.1, biography: bigraphys[rand(1..3)], vacancy: Vacancy.fifth, status: 1, gender: false}
     ])
 
 # candidates scores
