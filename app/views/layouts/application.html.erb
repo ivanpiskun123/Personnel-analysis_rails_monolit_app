@@ -8,26 +8,39 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
 
+    <div class="common-back-container">
+
     <% if current_user %>
+
         <div class="ui grid">
-            <div class="ui  placeholder  segment">
-              <div class="four wide column">
-                  <%= render partial: 'shared/navigation_bar' %>
-              </div>
-            </div>
+          <div class="row">
 
-            <div class="six wide column">
+          </div>
 
-                  <%= yield %>
-            </div>
+          <div class="sixteen wide column">
+              <%= render partial: 'shared/navigation_bar' %>
+              <%= yield %>
+          </div>
+
+      </div>
+
 
     <% else %>
          <%= yield %>
     <% end %>
+
+
+  </div>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+  </style>
+
 
   </body>
 </html>

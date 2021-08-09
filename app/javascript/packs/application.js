@@ -15,3 +15,6 @@ Turbolinks.start()
 ActiveStorage.start()
 
 require('jquery')
+
+import JQuery from 'jquery';
+ window.$ = window.JQuery = JQuery;

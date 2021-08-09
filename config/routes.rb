@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'vacancies/index'
   devise_for :users
 
   ActiveAdmin.routes(self)
 
-  root 'home#home'
+  root 'vacancies#index'
 
   resources :positions
   resources :criteria

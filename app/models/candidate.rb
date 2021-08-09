@@ -11,6 +11,11 @@ class Candidate < ApplicationRecord
   #   Принят: 2
   # }
 
+  enum gender: {
+    male: true,
+    female: false
+  }
+
   validates :status, inclusion: { in: 0..2 ,
                message: "(%{value}) can't be less 0 and more 2" }
   validates :first_name, presence: true

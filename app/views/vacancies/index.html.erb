@@ -1,0 +1,23 @@
+<div class="ui basic modal">
+  <div class="ui icon header">
+    <i class="angellist icon"></i>
+    <br>
+    <h2 class="ui header" style="color:white">Здравствуй, <%= current_user.admin_prefix + current_user.name %>!</h2><br>
+    <h2 class="ui header" style="color:white">Хорошего дня!</h2>
+
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+
+      $('.ui.basic.modal')
+        .modal('show')
+      ;
+
+      });
+</script>
