@@ -6,22 +6,22 @@
 
   <% if Vacancy.opened.count > 0 %>
       <div class="ui labeled button item" tabindex="0">
-      <div class="ui red button">
-      <i class="users icon"></i> Вакансии
-      </div>
+            <%= button_to  vacancies_path, class: "ui red button" do %>
+                <i class="users icon"></i> Вакансии
+            <% end %>
       <a class="ui basic red left pointing label">
       <%= Vacancy.opened.count %>
       </a>
       </div>
   <% else %>
-      <div class="ui labeled button item" tabindex="0">
-      <div class="ui green button">
-      <i class="users icon"></i> Вакансии
-      </div>
-      <a class="ui basic green left pointing label">
-      <%= Vacancy.opened.count %>
-      </a>
-      </div>
+        <div class="ui labeled button item" tabindex="0">
+              <%= button_to  vacancies_path, class: "ui green button" do %>
+                  <i class="users icon"></i> Вакансии
+              <% end %>
+        <a class="ui basic red left pointing label">
+        <%= Vacancy.opened.count %>
+        </a>
+        </div>
   <% end %>
 
   <div class="item">

@@ -16,4 +16,6 @@ Rails.application.routes.draw do
 
   get "home/home"
 
+  match '*path' => redirect('/'), via: :get
+
 end

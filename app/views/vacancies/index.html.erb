@@ -1,23 +1,25 @@
+
 <div class="ui basic modal">
   <div class="ui icon header">
     <i class="angellist icon"></i>
     <br>
-    <h2 class="ui header" style="color:white">Здравствуй, <%= current_user.admin_prefix + current_user.name %>!</h2><br>
-    <h2 class="ui header" style="color:white">Хорошего дня!</h2>
+    <h1 class="ui header" style="color:white">Здравствуй, <%= current_user.admin_prefix + current_user.name %>!</h1><br>
+    <h3 class="ui header" style="color:white">"<%= random_joke %>"</h3><br>
+    <h1 class="ui header" style="color:white">Хорошего дня!</h1>
 
   </div>
 </div>
 
 
-
-
 <script type="text/javascript">
     $(document).ready(function(){
 
+           <% if session.has_key?(:js_code) %>
+            <% session.delete(:js_code) %>
 
-      $('.ui.basic.modal')
-        .modal('show')
-      ;
+            $('.ui.basic.modal').modal('show');
 
+
+          <% end %>
       });
 </script>
