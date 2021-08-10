@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :position_criterium_scores
   resources :candidate_criterium_scores
 
-  get "home/home"
+  get "home/statistics"
 
   match '*path' => redirect('/'), via: :get
 

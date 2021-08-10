@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
-  def home
-    
+  def statistics
+
   end
 
 end

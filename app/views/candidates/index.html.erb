@@ -1,0 +1,191 @@
+
+
+<div class="ui grid">
+
+  <div class="row"></div>
+
+  <div class="one wide column">
+
+  </div>
+
+  <div class="fourteen wide column">
+    <div class="ui piled segment">
+
+    <div class="ui  grid">
+
+      <div class="ui three wide column  " >
+
+        <div class="ui center aligned container">
+
+        <h2 class="ui icon header ">
+          <i class="address card icon"></i>
+          <div class="content">
+            Все кандидаты
+
+          <div class="ui divider"></div>
+
+
+
+
+            <div class="sub header ui statistics ">
+
+              <div class="orange statistic ">
+                <div class="value">
+                  <%= Candidate.rejected.count %>
+                </div>
+                <div class="label">
+                    <center>
+                      Отклонены
+                        </center>
+                </div>
+              </div>
+
+              <div class="yellow statistic ">
+                <div class="value">
+                  <%= Candidate.reviewed.count %>
+                </div>
+                <div class="label">
+                    <center>
+                  Рассматриваются
+                        </center>
+                </div>
+              </div>
+
+              <div class="green statistic ">
+                <div class="value">
+                  <%= Candidate.accepted.count %>
+                </div>
+                <div class="label">
+                    <center>
+                  Приняты
+                        </center>
+                </div>
+              </div>
+
+
+
+
+
+              <div class="grey statistic">
+                <div class="value">
+                  <%= Candidate.count %>
+                </div>
+                <div class="label">
+                    <center>
+                  Все
+                        </center>
+                </div>
+              </div>
+            </div>
+
+            <%= pie_chart @data_chart %>
+
+
+
+          </div>
+        </h2>
+
+      </div>
+      </div>
+
+
+
+      <div class="thirteen wide column">
+
+        <table class="ui compact celled definition table">
+<thead>
+  <tr>
+    <th>№</th>
+    <th>Название</th>
+    <th class=" center aligned">Дата создания</th>
+    <th class=" center aligned"><i class="info icon"></i> Критерий / Мин.балл</th>
+  </tr>
+</thead>
+
+<tbody>
+
+
+
+
+
+
+
+</tbody>
+
+
+
+
+</table>
+
+      </div>
+
+    </div>
+
+    </div>
+
+  </div>
+
+  <div class="one wide column">
+
+  </div>
+
+</div>
+
+
+
+
+
+<!--
+<script type="text/javascript">
+    $(document).ready(function(){
+
+      $('.star.rating')
+          .rating({
+            initialRating: 2,
+              maxRating: 5
+          })
+
+  $('.star.rating')
+      .rating('disable');
+
+        $('.position.star.rating')
+            .rating('enable');
+
+      $('.dropdown')
+          .dropdown();
+
+        $("#createPositionId").click(function(){
+          $('.ui.mini.modal.create-position')
+          .modal('show');
+         });
+
+     $("#createPositionModalId").click(function(){
+       var gf = $('.position_input')[0]
+
+       var dataaa = {"position_name" : gf.value,
+                     "authenticity_token" : $('[name="csrf-token"]')[0].content}
+
+        <% @c.count.times do |idx| %>
+          dataaa["criterium_"+(<%= idx %> + 1)] = $('#criterium_<%= idx+1 %>').rating('get rating')
+        <% end %>
+
+           $.ajax({
+               type:"POST",
+               url:"http://localhost:3000/positions",
+               data: JSON.stringify(dataaa),
+               contentType: 'application/json',
+               success: function(res) {
+                   console.log(res);
+                   console.log("Sent");
+               }.bind(this),
+               error: function(xhr, status, err) {
+                   console.error(xhr, status, err.toString());
+               }
+           });
+
+
+      });
+
+
+    });
+</script> -->

@@ -6,7 +6,7 @@
 
   <% if Vacancy.opened.count > 0 %>
       <div class="ui labeled button item" tabindex="0">
-            <%= button_to  vacancies_path, class: "ui red button" do %>
+            <%= button_to  vacancies_path, method: "get", class: "ui red button" do %>
                 <i class="users icon"></i> Вакансии
             <% end %>
       <a class="ui basic red left pointing label">
@@ -15,7 +15,7 @@
       </div>
   <% else %>
         <div class="ui labeled button item" tabindex="0">
-              <%= button_to  vacancies_path, class: "ui green button" do %>
+              <%= button_to  vacancies_path, method: "get", class: "ui green button" do %>
                   <i class="users icon"></i> Вакансии
               <% end %>
         <a class="ui basic red left pointing label">
@@ -25,7 +25,7 @@
   <% end %>
 
   <div class="item">
-    <%= button_to  candidates_path, class: "medium ui  secondary button" do %>
+    <%= button_to  candidates_path, method: "get", class: "medium ui  secondary button" do %>
     <i class="user circle icon"></i>
       Кандидаты
     <% end %>
@@ -33,22 +33,18 @@
 
 
   <div class="item">
-    <%= button_to  positions_path, class: "medium ui secondary button" do %>
+    <%= button_to  positions_path, method: "get", class: "medium ui secondary button" do %>
       <i class="address card outline icon"></i>
       Должности
     <% end %>
   </div>
 
   <div class="item">
-    <%= button_to  criteria_path, class: "medium ui secondary button" do %>
+    <%= button_to  criteria_path, method: "get", class: "medium ui secondary button" do %>
       <i class="info icon"></i>
       Критерии
     <% end %>
   </div>
-
-
-
-
 
 
     <div class="right menu">
@@ -56,7 +52,7 @@
 
       <% if current_user.is_admin? %>
         <div class="item">
-          <%= button_to  vacancies_path, class: "medium ui google plus button" do %>
+          <%= button_to  home_statistics_path,method: "get", class: "medium ui google plus button" do %>
             <i class="file alternate icon"></i>
             Статистика
           <% end %>
@@ -70,7 +66,7 @@
         <% if current_user.is_admin? %>
         <div class="ui large buttons">
 
-          <%= button_to  destroy_user_session_path, method: "delete", class: "ui button" do %>
+          <%= button_to  admin_root_path, method: "get", class: "ui button" do %>
 
             <i class="icon settings"></i>
             Админ

@@ -1,4 +1,8 @@
 class Candidate < ApplicationRecord
+  scope :rejected, -> { where(status: 0) }
+  scope :reviewed, -> { where(status: 1) }
+    scope :accepted, -> { where(status: 2) }
+
   has_one_attached :avatar
 
   belongs_to :vacancy
