@@ -117,7 +117,7 @@
   <% end %>
 
       <td class=" center aligned ">
-        <%= button_to  vacancies_path, method: "get", class: "circular ui tiny icon button" do %>
+        <%= link_to candidates_path(:vacancy_id => v.id), method: "get", class: "circular ui tiny icon button" do %>
             <i class="icon user circle"></i>
         <% end %>
       </td>
