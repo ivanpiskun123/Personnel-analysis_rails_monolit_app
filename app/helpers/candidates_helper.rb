@@ -1,14 +1,22 @@
 module CandidatesHelper
-  def humanize_status
-      case self.status
-      when 1
+  def humanize_status(candidate)
+      case candidate.status
+      when 0
          "Отклонён"
-      when 2
+      when 1
         "Рассматривается"
-      when 3
+      when 2
          "Принят"
       else
        "Error case in candidate helper"
       end
+  end
+
+  def random_image(male)
+    if male=="male"
+      ["man_1.jpg","man_2.png","man_3.jpg" ].sample
+      else
+        ["waman_1.jpg","woman.png" ].sample
+    end
   end
 end

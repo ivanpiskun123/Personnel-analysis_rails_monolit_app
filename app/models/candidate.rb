@@ -7,7 +7,7 @@ class Candidate < ApplicationRecord
 
   belongs_to :vacancy
   belongs_to :user
-  has_many :candidate_criterium_scores
+  has_many :candidate_criterium_scores, dependent: :delete_all
 
   # enum status: {
   #   Отклонён: 0,
@@ -28,6 +28,11 @@ class Candidate < ApplicationRecord
   validates :number, presence: true
 
     validates :number, uniqueness: true
+
+
+    def score_sum
+      self.candidate_criterium_scores.to_a.sum(&:score)
+    end
 
 
 end
