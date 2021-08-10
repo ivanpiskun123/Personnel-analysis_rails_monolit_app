@@ -16,7 +16,15 @@ module CandidatesHelper
     if male=="male"
       ["man_1.jpg","man_2.png","man_3.jpg" ].sample
       else
-        ["waman_1.jpg","woman.png" ].sample
+      ["waman_1.jpg","woman.png" ].sample
+    end
+  end
+
+  def russian_gender(candidate)
+    if candidate.gender=="male"
+      "Мужской"
+    else
+      "Женский"
     end
   end
 end

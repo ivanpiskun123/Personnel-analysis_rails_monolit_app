@@ -118,6 +118,8 @@
 <tbody>
 
 
+  <% @imgs = {} %>
+
 
   <% @c.each_with_index do |c, idx| %>
 
@@ -130,17 +132,24 @@
     <% end %>
 
 
+
+
+
     <td class="center aligned" style="vertical-align: middle">
       <%= link_to c.vacancy.position.name, candidates_path(:vacancy_id => c.vacancy.id) %>
     </td>
     <td class="center aligned" style="vertical-align: middle">
 
 
-
-      <%= image_tag(random_image(c.gender), :size => "110x110") %>
+      <% @imgs[c.id.to_s] = random_image(c.gender) %>
+      <%= image_tag(@imgs[c.id.to_s], :size => "110x110") %>
     </td>
     <td class="center aligned" style="vertical-align: middle">
-        <%= link_to c.first_name+" "+c.second_name, candidates_path(:vacancy_id => c.vacancy.id) %>
+
+      <div class=" ui basic button" id="<%= c.id %>">
+          <i class="icon user"></i><%= c.first_name+" "+c.second_name %>
+        </div>
+
     </td>
     <td class="center aligned" style="vertical-align: middle"><%= c.score_sum %></td>
     <td class="center aligned" style="vertical-align: middle"><%= c.expirience_years %></td>
@@ -289,6 +298,211 @@
 
       <% end %>
 </div>
+
+
+
+<% @c.each do |c| %>
+
+      <div class="ui  modal show-candidate <%= c.id %>">
+        <div class="header"><center>Кандидат <%= c.first_name+" " + c.second_name %></center></div>
+        <div class="content">
+
+      <div class="ui grid">
+
+        <div class="ui five wide column  " >
+                        <div class="ui card">
+                              <div class="image">
+                                    <%= image_tag( @imgs[c.id.to_s], :size => "110x110") %>
+                              </div>
+                              <div class="content">
+                                <a class="header"><%= c.first_name+" " + c.second_name %></a>
+                                <div class="meta">
+                                  <span class="date"><%= c.created_at.to_date %></span>
+                                </div>
+                                    <div class="description">
+                                      Статус: <%= humanize_status(c) %>
+                                        </div>
+                              </div>
+                              <div class="extra content">
+                                <a>
+                                  <i class="user icon"></i>
+                                  <%= c.vacancy.position.name %>
+                                </a>
+                              </div>
+                      </div>
+
+            <div class="ui divider"></div>
+
+              <% unless c.status==2 %>
+                <div class="ui medium buttons">
+                  <button class="ui red button" id="reject_btn_<%= c.id %>">Отклонить</button>
+                  <div class="or"></div>
+                  <button class="ui positive button" id="permit_btn_<%= c.id %>">Принять</button>
+                </div>
+                <% end %>
+
+
+        </div>
+
+        <div class="ui eleven wide column  " >
+
+          <table class="ui very basic collapsing celled table">
+            <thead>
+              <tr>
+                <th>Критерии</th>
+                <th>Кандидата</th>
+                <th>Должности</th>
+            </tr>
+            </thead>
+
+          <tbody>
+            <% c.candidate_criterium_scores.each do |cs| %>
+            <tr>
+                <td>
+                    <%= cs.criterium.name %>
+                  </td>
+              <td>
+                  <div class="ui star rating" data-rating="<%= cs.score %>" ></div>
+                </td>
+              <td>
+                  <div class="ui star rating" data-rating="<%= c.vacancy.position.position_criterium_scores.where(criterium: cs.criterium).first.score %>" ></div>
+                </td>
+            </tr>
+
+            <% end  %>
+            </tbody>
+          </table>
+
+            <div class="ui divider"></div>
+
+          <div class="ui form">
+
+
+              <div class="two fields">
+
+                <div class="field">
+                  <label>Пол:</label>
+                  <input readonly="" type="text" placeholder="Моб. телефон" name="number" value="<%= russian_gender(c) %>">
+                </div>
+
+                <div class="field">
+                  <label>Опыт работы:</label>
+                  <input readonly="" type="text" placeholder="Моб. телефон" name="number" value="<%= c.expirience_years %>">
+                </div>
+
+              </div>
+
+              <div class="ui message">
+              <div class="header">
+                Биография
+              </div>
+              <p><%= c.biography %></p>
+              </div>
+
+
+              <div class="field">
+               <label>E-mail</label>
+               <input readonly="" type="email" placeholder="Электронный ящик" name="email" value="<%= c.email %>">
+             </div>
+
+              <div class="field">
+                <label>Телефон</label>
+                <input readonly="" type="text" placeholder="Моб. телефон" name="number" value="<%= c.number %>">
+              </div>
+
+
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+          </div>
+      </div>
+
+<% end %>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+      <% @c.each do |c| %>
+
+      $("#<%= c.id %>").click(function(){
+        $('.ui.modal.show-candidate.<%= c.id %>')
+        .modal('show');
+       });
+
+      <% end %>
+
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+      <% @c.each do |c| %>
+
+      $("#reject_btn_<%= c.id %>").click(function(){
+
+          var dataaa = {"candidate_id" : <%= c.id %>,
+                        "reject_it" : true,
+                      "authenticity_token" : $('[name="csrf-token"]')[0].content}
+
+            $.ajax({
+              type:"PUT",
+              url:"http://localhost:3000/candidates/<%= c.id %>",
+                data: JSON.stringify(dataaa),
+                contentType: 'application/json',
+                success: function(res) {
+                    console.log(res);
+                    console.log("Sent");
+                }.bind(this),
+                error: function(xhr, status, err) {
+                    console.error(xhr, status, err.toString());
+                }
+            });
+       });
+
+
+       $("#permit_btn_<%= c.id %>").click(function(){
+
+         var dataaa = {"candidate_id" : <%= c.id %>,
+                       "permit_it" : true,
+                     "authenticity_token" : $('[name="csrf-token"]')[0].content}
+
+           $.ajax({
+               type:"PUT",
+               url:"http://localhost:3000/candidates/<%= c.id %>",
+               data: JSON.stringify(dataaa),
+               contentType: 'application/json',
+               success: function(res) {
+                   console.log(res);
+                   console.log("Sent");
+               }.bind(this),
+               error: function(xhr, status, err) {
+                   console.error(xhr, status, err.toString());
+               }
+           });
+        });
+
+
+      <% end %>
+
+    });
+</script>
 
 
 

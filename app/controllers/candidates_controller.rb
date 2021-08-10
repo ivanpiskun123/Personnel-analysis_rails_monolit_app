@@ -38,6 +38,38 @@ class CandidatesController < ApplicationController
 
   end
 
+  def update
+        unless params[:reject_it].nil?
+            c = Candidate.find(params[:id])
+            c.status = 0
+            c.save
+        else
+          c = Candidate.find(params[:id])
+          c.status = 2
+          c.save
+
+          c.vacancy.closing_date = Date.today
+          c.vacancy.save
+
+          c.vacancy.candidates.each do |cand|
+            unless cand.status == 2
+                cand.status = 0
+                cand.save
+            end
+          end
+
+
+
+        end
+
+        respond_to do |format|
+            format.js {render inline: "location.reload();" }
+          end
+
+
+
+  end
+
 
   def create
 
@@ -61,7 +93,11 @@ class CandidatesController < ApplicationController
       status: 1,
       vacancy: Position.find_by_name(params[:vacancy_name]).vacancies.first
     )
-    @c.avatar = params[:candidate][:avatar]
+
+    unless params[:candidate].nil?
+        @c.avatar = params[:candidate][:avatar]
+    end
+
     @c.save
 
     Criterium.all.each_with_index do |c, idx|

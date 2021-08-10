@@ -1,7 +1,8 @@
 require "test_helper"
 
 class CriteriumTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should not save Criterium without field Name" do
+        c = Criterium.new
+        assert_not c.save
+  end
 end

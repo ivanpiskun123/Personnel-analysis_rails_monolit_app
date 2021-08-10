@@ -1,7 +1,8 @@
 require "test_helper"
 
 class PositionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should not save Position without field Name" do
+        j = Position.new
+        assert_not j.save
+  end
 end
