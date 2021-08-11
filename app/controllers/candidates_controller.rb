@@ -49,6 +49,7 @@ class CandidatesController < ApplicationController
           c.save
 
           c.vacancy.closing_date = Date.today
+          c.vacancy.status = true
           c.vacancy.save
 
           c.vacancy.candidates.each do |cand|
