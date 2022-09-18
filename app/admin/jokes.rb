@@ -14,5 +14,13 @@ ActiveAdmin.register Joke do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  #
 
+  show title: proc {"Шутки"} do
+    attributes_table do
+      row "Текст шутки" do
+        resource.body
+      end
+    end
+  end
 end

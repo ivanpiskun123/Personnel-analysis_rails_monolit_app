@@ -14,5 +14,34 @@ ActiveAdmin.register Vacancy do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  #
+  #
 
-end
+  show title: proc { "Вакансия" } do
+    attributes_table do
+      row "Статус вакансии" do
+        vacancy.status_name
+      end
+
+      row "Дата открытия" do
+        vacancy.opening_date
+      end
+
+      if vacancy.status # if closed
+        row "Дата закрытия" do
+          vacancy.closing_date
+        end
+      end
+
+        panel 'Позиция' do
+           p = vacancy.position
+
+            attributes_table_for p do
+              row "Позиция" do
+                auto_link p
+              end
+           end
+         end
+        end
+    end
+  end

@@ -15,4 +15,29 @@ ActiveAdmin.register Criterium do
   #   permitted
   # end
 
+  show title: proc { "Критерии" } do
+
+    h3 "Критерий - #{resource.name}"
+
+    panel "Позиции" do
+      ps = resource.position_criterium_scores
+
+      table_for ps do
+        column("Позиция") { |p| auto_link p.position }
+        column "Величина критерия",   :score
+      end
+    end
+
+    panel "Кандидаты" do
+      cs = resource.candidate_criterium_scores
+
+      table_for cs do
+        column("Кандидат") { |c| auto_link c.candidate  }
+        column("Полное имя") { |c| "#{c.candidate.first_name} #{c.candidate.second_name}" }
+        column "Величина критерия",   :score
+      end
+    end
+
+  end
+
 end

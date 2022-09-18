@@ -14,5 +14,28 @@ ActiveAdmin.register CandidateCriteriumScore do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  #
+  #
+
+  show title: proc { "Метрики кандидатов" } do
+    attributes_table do
+      row "Критерий" do
+        "#{resource.criterium.name}"
+      end
+
+      row "Кандидат" do
+        auto_link resource.candidate
+      end
+
+      row "Полное имя" do
+        "#{resource.candidate.first_name} #{resource.candidate.second_name}"
+      end
+
+      row "Балл" do
+        resource.score
+      end
+
+    end
+  end
 
 end

@@ -34,5 +34,21 @@ class Candidate < ApplicationRecord
       self.candidate_criterium_scores.to_a.sum(&:score)
     end
 
+  def status_name
+    case self.status
+    when 0
+      "Отклонён"
+    when 1
+      "Рассматривается"
+    else
+      "Принят"
+    end
+  end
+
+  def to_s
+    "#{first_name} #{second_name}: #{status_name.downcase}"
+  end
+
+  private
 
 end

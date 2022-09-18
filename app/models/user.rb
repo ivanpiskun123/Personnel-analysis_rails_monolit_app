@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true
 
+  has_many :candidates
+
   def admin_prefix
     self.is_admin ? "Администратор " : ""
   end

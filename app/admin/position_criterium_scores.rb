@@ -14,5 +14,24 @@ ActiveAdmin.register PositionCriteriumScore do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  #
+  #
+
+  show title: proc { "Метрики позиции" } do
+    attributes_table do
+      row "Критерий" do
+        "#{resource.criterium.name}"
+      end
+
+      row "Позиция" do
+        auto_link resource.position
+      end
+
+      row "Балл" do
+        resource.score
+      end
+
+    end
+  end
 
 end
