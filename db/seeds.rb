@@ -8,7 +8,18 @@
 
 # initial active_admin records | must be commented after running rails db:seed with this record
 # User.create!(name: "Initial user" ,email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
-#
+
+def rand_date_old
+  Time.now - rand(30..45).day
+end
+
+def rand_date_recent
+  Time.now - rand(15..20).day
+end
+
+def most_recent_date
+  Time.now - rand(10..15).day
+end
 
 User.create([
   {email: "admin1@gmail.com", name: "Юрий", is_admin: true, password: "admin123", password_confirmation: "admin123"},
@@ -26,6 +37,8 @@ Criterium.create([
   {name: "Знания специфики производства"},
   ])
 
+Criterium.update_all(created_at: rand_date_old)
+
 Position.create([
   {name: "Начальник отдела продаж"},
   {name: "Менеджер отдела продаж"},
@@ -33,6 +46,8 @@ Position.create([
   {name: "Заместитель дирекора по сбыту"},
   {name:"Начальник погрузочного отдела"}
   ])
+
+Position.update_all(created_at: rand_date_old-5.day)
 
 PositionCriteriumScore.create([
   {position: Position.first , criterium: Criterium.first, score: 3},
@@ -61,6 +76,8 @@ PositionCriteriumScore.create([
   {position: Position.fifth , criterium: Criterium.fourth, score: 4},
   ])
 
+PositionCriteriumScore.update_all(created_at: rand_date_recent)
+
 Vacancy.create([
   {position: Position.first, opening_date: Date.today},
   {position: Position.second, opening_date: Date.today},
@@ -69,6 +86,7 @@ Vacancy.create([
   {position: Position.fifth, opening_date: Date.today},
   ])
 
+Vacancy.update_all(created_at: rand_date_recent)
 
 # candidates
   bigraphys = [
@@ -102,6 +120,8 @@ Vacancy.create([
     {first_name: "Елена", second_name: "Пырко", email: "elena_pirko@gmail.com", number: "+375335121387",user: User.limit(6)[rand(0..5)],
     expirience_years: 5.1, biography: bigraphys[rand(1..3)], vacancy: Vacancy.fifth, status: 1, gender: false}
     ])
+
+Candidate.update_all(created_at: most_recent_date)
 
 # candidates scores
     generate_score = lambda { 2 + rand(1..3) }
