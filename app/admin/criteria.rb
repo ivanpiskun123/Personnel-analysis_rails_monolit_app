@@ -38,6 +38,8 @@ ActiveAdmin.register Criterium do
       end
     end
 
+    active_admin_comments
   end
+
 
 end
